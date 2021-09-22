@@ -173,7 +173,9 @@ cnc.MDI = function(field) {
 }
 
 cnc.zeroAxis = function(axis) {
-    cnc.setAxisByValue(axis, 0);
+    cnc.click();
+    controller.command('gcode', 'G92 ' + axis + '0');
+    //cnc.setAxisByValue(axis, 0);
 }
 
 cnc.toggleFullscreen = function() {
@@ -977,6 +979,10 @@ cnc.runUserCommand = function(name) {
 	    jQuery.post("../api/commands/run/" + cmd.id + "?token=" + cnc.token);
 	}
     });
+}
+
+cnc.userShutdown = function() {
+    window.location.href = 'http://127.0.0.1:5000';
 }
 
 cnc.getFileList = function() {
